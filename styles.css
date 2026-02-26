@@ -18,6 +18,11 @@ body {
   position: relative;
 }
 
+body.modal-open .container,
+body.modal-open .magic-sky {
+  filter: blur(7px) brightness(0.8);
+}
+
 #confetti-canvas {
   position: fixed;
   inset: 0;
@@ -32,6 +37,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 30;
+  transition: filter 0.3s ease;
 }
 
 .easter-egg {
@@ -50,11 +56,12 @@ body {
 }
 
 .easter-egg:nth-child(1) { top: 10%; left: 6%; }
-.easter-egg:nth-child(2) { top: 18%; right: 8%; animation-delay: 0.7s; }
+.easter-egg:nth-child(2) { top: 25%; right: 8%; animation-delay: 0.7s; }
 .easter-egg:nth-child(3) { top: 43%; right: 3%; animation-delay: 1.1s; }
-.easter-egg:nth-child(4) { bottom: 31%; left: 4%; animation-delay: 1.4s; }
+.easter-egg:nth-child(4) { bottom: 19%; left: 1%; animation-delay: 1.4s; }
 .easter-egg:nth-child(5) { bottom: 14%; right: 12%; animation-delay: 1.8s; }
 .easter-egg:nth-child(6) { bottom: 8%; left: 18%; animation-delay: 2.1s; }
+.easter-egg:nth-child(7) { top: 58%; left: 8%; animation-delay: 2.5s; }
 
 @keyframes floaty {
   0%, 100% { transform: translateY(0); }
@@ -68,6 +75,7 @@ body {
   gap: 0.9rem;
   position: relative;
   z-index: 10;
+  transition: filter 0.3s ease;
 }
 
 .card {
@@ -79,17 +87,14 @@ body {
   padding: 1rem;
 }
 
-.decorated {
-  position: relative;
-  overflow: hidden;
-}
+.decorated { position: relative; overflow: hidden; }
 
 .decorated::before {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 10% 15%, rgba(255, 255, 255, 0.5), transparent 45%),
-              radial-gradient(circle at 92% 82%, rgba(157, 116, 255, 0.22), transparent 40%);
+    radial-gradient(circle at 92% 82%, rgba(157, 116, 255, 0.22), transparent 40%);
   pointer-events: none;
 }
 
@@ -131,10 +136,10 @@ h1 { font-size: clamp(1.7rem, 7vw, 3rem); }
   transition: background 0.45s ease, box-shadow 0.45s ease;
 }
 
-.reels[data-theme="rose"] { background: linear-gradient(150deg, rgba(255,255,255,0.88), rgba(255,196,226,0.62)); }
-.reels[data-theme="gold"] { background: linear-gradient(150deg, rgba(255,255,255,0.88), rgba(255,224,151,0.58)); }
-.reels[data-theme="violet"] { background: linear-gradient(150deg, rgba(255,255,255,0.88), rgba(192,176,255,0.58)); }
-.reels[data-theme="mint"] { background: linear-gradient(150deg, rgba(255,255,255,0.88), rgba(177,247,233,0.56)); }
+.reels[data-theme="rose"] { background: linear-gradient(150deg, rgba(255, 255, 255, 0.88), rgba(255, 196, 226, 0.62)); }
+.reels[data-theme="gold"] { background: linear-gradient(150deg, rgba(255, 255, 255, 0.88), rgba(255, 224, 151, 0.58)); }
+.reels[data-theme="violet"] { background: linear-gradient(150deg, rgba(255, 255, 255, 0.88), rgba(192, 176, 255, 0.58)); }
+.reels[data-theme="mint"] { background: linear-gradient(150deg, rgba(255, 255, 255, 0.88), rgba(177, 247, 233, 0.56)); }
 
 .reels-head { text-align: center; }
 .reels-tip { margin: 0 0 0.75rem; font-size: 0.84rem; color: #5b3f79; }
@@ -199,10 +204,10 @@ h1 { font-size: clamp(1.7rem, 7vw, 3rem); }
 
 .dot.active { background: #8a52ff; }
 
-.magic-popup {
+.magic-popup,
+.photo-popup {
   position: fixed;
   left: 50%;
-  top: 1rem;
   transform: translate(-50%, -16px);
   width: min(92vw, 480px);
   background: linear-gradient(125deg, rgba(54, 27, 93, 0.98), rgba(117, 58, 166, 0.97));
@@ -217,11 +222,36 @@ h1 { font-size: clamp(1.7rem, 7vw, 3rem); }
   z-index: 120;
 }
 
-.magic-popup.show {
+.magic-popup { top: 1rem; }
+
+.photo-popup {
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+  width: min(92vw, 430px);
+  padding: 0.5rem 2.5rem 0.85rem;
+  text-align: center;
+}
+
+.photo-popup img {
+  width: 100%;
+  aspect-ratio: 9 / 15;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.photo-popup p {
+  margin: 0.6rem 0 0;
+  font-weight: 600;
+}
+
+.magic-popup.show,
+.photo-popup.show {
   opacity: 1;
   pointer-events: auto;
-  transform: translate(-50%, 0);
 }
+
+.magic-popup.show { transform: translate(-50%, 0); }
+.photo-popup.show { transform: translate(-50%, -50%) scale(1); }
 
 .magic-popup p { margin: 0; font-size: 0.94rem; line-height: 1.35; }
 
