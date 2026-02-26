@@ -39,7 +39,7 @@ const wishes = [
 
 const memoryPhotos = [
   {
-    src: './images/pop_isha_don.heic',
+    src: './images/pop_isha_don.jpg',
     text: 'Isha, the Don 😎🌸'
   },
   {
@@ -59,11 +59,11 @@ const memoryPhotos = [
     text: 'tadho tha wasa 🫸🥤'
   },
   {
-    src: './images/isha_dance.heic',
+    src: './images/isha_dance.jpg',
     text: 'Queen of party and celebrations 📸👑'
   },
   {
-    src: './images/isha_dance.heic',
+    src: './images/isha_dance.jpg',
     text: 'Your happiest chapter starts now 💃🎉 '
   }
 ];
