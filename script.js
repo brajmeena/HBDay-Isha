@@ -13,14 +13,23 @@ const eggs = Array.from(document.querySelectorAll('.easter-egg'));
 const popup = document.getElementById('magicPopup');
 const popupText = document.getElementById('magicPopupText');
 const closePopupButton = document.getElementById('closePopup');
+const photoPopup = document.getElementById('photoPopup');
+const photoPopupImage = document.getElementById('photoPopupImage');
+const photoPopupText = document.getElementById('photoPopupText');
+const closePhotoPopupButton = document.getElementById('closePhotoPopup');
 
 let activeIndex = 0;
-let autoplay;
+let autoplayInterval;
+let autoplayResumeTimer;
 let confettiPieces = [];
 let animationId;
 let touchStartY = 0;
 let touchEndY = 0;
 let popupTimer;
+
+const AUTO_SCROLL_MS = 5000;
+const AUTO_RESUME_DELAY_MS = 10000;
+const POPUP_SHOW_MS = 10000;
 
 const wishes = [
   'Wishing you endless laughter, love, and magical adventures! 💖',
@@ -28,9 +37,44 @@ const wishes = [
   'Happy Birthday! You deserve all the joy, cake, and confetti in the world! 🎂'
 ];
 
+const memoryPhotos = [
+  {
+    src: './images/pop_isha_don.heic',
+    text: 'Isha, the Don 😎🌸'
+  },
+  {
+    src: './images/pop_isha_np.jpg',
+    text: 'Main character energy, always 🤝🔥'
+  },
+  {
+    src: './images/isha_mybdy.jpg', 
+    text: 'Beautiful, brave, and brilliant. 🤓🎈'
+  },
+  {
+    src: './images/pop_isha_pop.jpg',
+    text: 'Ooops to close, go away ❌🔍.'
+  },
+  {
+    src: './images/pop_isha_stop.jpg',
+    text: 'tadho tha wasa 🫸🥤'
+  },
+  {
+    src: './images/isha_dance.heic',
+    text: 'Queen of party and celebrations 📸👑'
+  },
+  {
+    src: './images/isha_dance.heic',
+    text: 'Your happiest chapter starts now 💃🎉 '
+  }
+];
+
 function setCanvasSize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+}
+
+function randomItem(items) {
+  return items[Math.floor(Math.random() * items.length)];
 }
 
 function applyThemeByIndex(index) {
@@ -60,19 +104,24 @@ function createDots() {
     dot.addEventListener('click', () => {
       activeIndex = i;
       renderReel(activeIndex);
-      resetAutoplay();
+      scheduleAutoplay();
     });
     dotsWrapper.appendChild(dot);
   });
 }
 
-function resetAutoplay() {
-  clearInterval(autoplay);
-  autoplay = setInterval(() => moveSlide(1), 4000);
+function scheduleAutoplay() {
+  clearInterval(autoplayInterval);
+  clearTimeout(autoplayResumeTimer);
+  autoplayResumeTimer = setTimeout(() => {
+    autoplayInterval = setInterval(() => moveSlide(1), AUTO_SCROLL_MS);
+  }, AUTO_RESUME_DELAY_MS);
 }
 
-function randomItem(items) {
-  return items[Math.floor(Math.random() * items.length)];
+function startAutoplayNow() {
+  clearInterval(autoplayInterval);
+  clearTimeout(autoplayResumeTimer);
+  autoplayInterval = setInterval(() => moveSlide(1), AUTO_SCROLL_MS);
 }
 
 function launchConfetti() {
@@ -118,6 +167,49 @@ function launchConfetti() {
   animate();
 }
 
+function launchMagicBurst() {
+  setCanvasSize();
+  const sparks = Array.from({ length: 500 }, () => ({
+    x: canvas.width / 2,
+    y: canvas.height * 0.32,
+    angle: Math.random() * Math.PI * 2,
+    speed: 2 + Math.random() * 5,
+    radius: 2 + Math.random() * 3,
+    life: 100 + Math.floor(Math.random() * 18),
+    color: randomItem(['#ffe066', '#a78bfa', '#7dd3fc', '#f9a8d4'])
+  }));
+
+  cancelAnimationFrame(animationId);
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    sparks.forEach((spark) => {
+      if (spark.life <= 0) {
+        return;
+      }
+      spark.x += Math.cos(spark.angle) * spark.speed;
+      spark.y += Math.sin(spark.angle) * spark.speed;
+      spark.speed *= 0.96;
+      spark.life -= 1;
+
+      ctx.beginPath();
+      ctx.fillStyle = spark.color;
+      ctx.globalAlpha = Math.max(spark.life / 40, 0);
+      ctx.arc(spark.x, spark.y, spark.radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+
+    if (sparks.some((spark) => spark.life > 0)) {
+      animationId = requestAnimationFrame(animate);
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  animate();
+}
+
 function handleSwipe() {
   const swipeDistance = touchEndY - touchStartY;
   if (Math.abs(swipeDistance) < 40) {
@@ -130,20 +222,43 @@ function handleSwipe() {
     moveSlide(1);
   }
 
-  resetAutoplay();
+  scheduleAutoplay();
 }
 
 function hideMagicPopup() {
   popup.classList.remove('show');
   popup.setAttribute('aria-hidden', 'true');
+  if (!photoPopup.classList.contains('show')) {
+    document.body.classList.remove('modal-open');
+  }
 }
 
 function showMagicPopup(message) {
   popupText.textContent = message || 'Magic found! ✨';
   popup.classList.add('show');
   popup.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
   clearTimeout(popupTimer);
-  popupTimer = setTimeout(hideMagicPopup, 3800);
+  popupTimer = setTimeout(hideMagicPopup, POPUP_SHOW_MS);
+}
+
+function hidePhotoPopup() {
+  photoPopup.classList.remove('show');
+  photoPopup.setAttribute('aria-hidden', 'true');
+  if (!popup.classList.contains('show')) {
+    document.body.classList.remove('modal-open');
+  }
+}
+
+function showPhotoPopup() {
+  const chosen = randomItem(memoryPhotos);
+  photoPopupImage.src = chosen.src;
+  photoPopupText.textContent = chosen.text;
+  photoPopup.classList.add('show');
+  photoPopup.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  clearTimeout(popupTimer);
+  popupTimer = setTimeout(hidePhotoPopup, POPUP_SHOW_MS);
 }
 
 wishButton.addEventListener('click', () => {
@@ -153,12 +268,12 @@ wishButton.addEventListener('click', () => {
 
 upButton.addEventListener('click', () => {
   moveSlide(-1);
-  resetAutoplay();
+  scheduleAutoplay();
 });
 
 downButton.addEventListener('click', () => {
   moveSlide(1);
-  resetAutoplay();
+  scheduleAutoplay();
 });
 
 reelViewport.addEventListener('wheel', (event) => {
@@ -172,7 +287,7 @@ reelViewport.addEventListener('wheel', (event) => {
     moveSlide(-1);
   }
 
-  resetAutoplay();
+  scheduleAutoplay();
 }, { passive: true });
 
 reelViewport.addEventListener('touchstart', (event) => {
@@ -186,15 +301,20 @@ reelViewport.addEventListener('touchend', (event) => {
 
 eggs.forEach((egg) => {
   egg.addEventListener('click', () => {
-    showMagicPopup(egg.dataset.message);
-    launchConfetti();
+    if (egg.dataset.type === 'photo') {
+      showPhotoPopup();
+    } else {
+      showMagicPopup(egg.dataset.message);
+    }
+    launchMagicBurst();
   });
 });
 
 closePopupButton.addEventListener('click', hideMagicPopup);
+closePhotoPopupButton.addEventListener('click', hidePhotoPopup);
 window.addEventListener('resize', setCanvasSize);
 
 createDots();
 renderReel(activeIndex);
-resetAutoplay();
+startAutoplayNow();
 setCanvasSize();
