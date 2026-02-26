@@ -280,7 +280,8 @@ reelViewport.addEventListener('wheel', (event) => {
   if (Math.abs(event.deltaY) < 10) {
     return;
   }
-
+  event.preventDefault();
+  
   if (event.deltaY > 0) {
     moveSlide(1);
   } else {
@@ -288,11 +289,15 @@ reelViewport.addEventListener('wheel', (event) => {
   }
 
   scheduleAutoplay();
-}, { passive: true });
+}, { passive: false });
 
 reelViewport.addEventListener('touchstart', (event) => {
   touchStartY = event.changedTouches[0].clientY;
 });
+
+reelViewport.addEventListener('touchmove', (event) => {
+  event.preventDefault();
+}, { passive: false });
 
 reelViewport.addEventListener('touchend', (event) => {
   touchEndY = event.changedTouches[0].clientY;
@@ -318,3 +323,4 @@ createDots();
 renderReel(activeIndex);
 startAutoplayNow();
 setCanvasSize();
+
