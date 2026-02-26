@@ -56,13 +56,13 @@ body.modal-open .magic-sky {
   animation: floaty 3.4s ease-in-out infinite;
 }
 
-.easter-egg:nth-child(1) { top: 10%; left: 6%; }
-.easter-egg:nth-child(2) { top: 25%; right: 8%; animation-delay: 0.7s; }
+.easter-egg:nth-child(1) { top: 10%; left: 1%; }
+.easter-egg:nth-child(2) { top: 25%; right: 2%; animation-delay: 0.7s; }
 .easter-egg:nth-child(3) { top: 43%; right: 3%; animation-delay: 1.1s; }
 .easter-egg:nth-child(4) { bottom: 19%; left: 1%; animation-delay: 1.4s; }
-.easter-egg:nth-child(5) { bottom: 14%; right: 12%; animation-delay: 1.8s; }
-.easter-egg:nth-child(6) { top: 35%; left: 11%; animation-delay: 2.1s; }
-.easter-egg:nth-child(7) { top: 58%; left: 8%; animation-delay: 2.5s; }
+.easter-egg:nth-child(5) { bottom: 14%; right: 2%; animation-delay: 1.8s; }
+.easter-egg:nth-child(6) { top: 35%; left: 3%; animation-delay: 2.1s; }
+.easter-egg:nth-child(7) { top: 58%; left: 2%; animation-delay: 2.5s; }
 
 @keyframes floaty {
   0%, 100% { transform: translateY(0); }
@@ -86,6 +86,7 @@ body.modal-open .magic-sky {
   box-shadow: 0 14px 40px rgba(26, 10, 44, 0.22);
   backdrop-filter: blur(8px);
   padding: 1rem;
+  overscroll-behavior-y: none;
 }
 
 .decorated { position: relative; overflow: hidden; }
@@ -276,5 +277,6 @@ h1 { font-size: clamp(1.7rem, 7vw, 3rem); }
   .reels-tip { font-size: 0.9rem; }
   .reel-viewport { height: min(68vh, 600px); }
 }
+
 
 
