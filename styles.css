@@ -16,7 +16,7 @@ body {
   background: radial-gradient(circle at top right, #ffd9f0, #d8cbff 45%, #baa2ff 80%, #31254d);
   padding: 0.85rem 0.75rem 1.5rem;
   position: relative;
-  overscroll-behavior-y: none;
+  /* overscroll-behavior-y: none; */
   height: 100%;
   overflow: hidden;
 }
@@ -299,6 +299,7 @@ h1 { font-size: clamp(1.7rem, 7vw, 3rem); }
   .reels-tip { font-size: 0.9rem; }
   .reel-viewport { height: min(68vh, 600px); }
 }
+
 
 
 
