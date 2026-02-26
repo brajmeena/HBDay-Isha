@@ -292,17 +292,19 @@ reelViewport.addEventListener('wheel', (event) => {
 }, { passive: false });
 
 reelViewport.addEventListener('touchstart', (event) => {
+  event.preventDefault();
   touchStartY = event.changedTouches[0].clientY;
-});
+}, { passive: false });
 
 reelViewport.addEventListener('touchmove', (event) => {
   event.preventDefault();
 }, { passive: false });
 
 reelViewport.addEventListener('touchend', (event) => {
+  event.preventDefault();
   touchEndY = event.changedTouches[0].clientY;
   handleSwipe();
-});
+}, { passive: false });
 
 eggs.forEach((egg) => {
   egg.addEventListener('click', () => {
@@ -323,4 +325,5 @@ createDots();
 renderReel(activeIndex);
 startAutoplayNow();
 setCanvasSize();
+
 
