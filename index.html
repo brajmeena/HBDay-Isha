@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Birthday, Isha 🪄</title>
+    <title>Happy Birthday, Isha ✨</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,21 +16,20 @@
     <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
     <div class="magic-sky" aria-hidden="true">
-      <button class="easter-egg" data-message="Golden Snitch unlocked! ⚡ You always chase dreams and catch them with style.">✨</button>
-      <button class="easter-egg" data-message="Sorting Hat says: 100 points to your house for being fabulous! 🧙‍♀️">🎩</button>
-      <button class="easter-egg" data-message="Wand sparkle! Spell cast: Lumos Birthdayus ✨🎂">🪄</button>
-      <button class="easter-egg" data-message="Hedwig express delivery: magical surprises are on the way! 🦉">🦉</button>
-      <button class="easter-egg" data-message="Marauder's Map reveals: this year = fun, growth, and glow-up! 🗺️">🗺️</button>
-      <button class="easter-egg" data-message="Felix Felicis mode ON — lucky birthday energy all year! 🍀">🧪</button>
+      <button class="easter-egg" data-type="message" data-message="Golden Snitch unlocked! ⚡ You always chase dreams and catch them with style.">✨</button>
+      <button class="easter-egg" data-type="message" data-message="Sorting Hat says: 100 points to your house for being fabulous! 🧙‍♀️">🎩</button>
+      <button class="easter-egg" data-type="message" data-message="Wand sparkle! Spell cast: Lumos Birthdayus ✨🎂">🪄</button>
+      <button class="easter-egg" data-type="message" data-message="Hedwig express delivery: magical surprises are on the way! 🦉">🦉</button>
+      <button class="easter-egg" data-type="message" data-message="Marauder's Map reveals: this year = fun, growth, and glow-up! 🗺️">🗺️</button>
+      <button class="easter-egg" data-type="photo" data-message="Pensieve activated: another magical memory appears! ✨">🪞</button>
     </div>
 
     <main class="container">
       <section class="hero card decorated">
         <p class="tag">For the Birthday Girl ✨</p>
-        <h1>Happy Birthday, Superstar! 🌸</h1>
+        <h1>Happy Birthday, Superstar 💫</h1>
         <p class="subtitle">
-          Mischief managed? Not today. Today is all about your smile, your sparkle, and every little thing that
-          makes you amazing.
+          Mischief managed? Not today. Today is for cake, magic, and your beautiful smile.
         </p>
         <button id="wishBtn" class="wish-btn">Tap for Birthday Magic 🎉</button>
         <p id="wishMessage" class="wish-message" role="status" aria-live="polite"></p>
@@ -44,20 +43,54 @@
 
         <div class="reel-viewport" id="reelViewport" data-theme="rose">
           <div class="reel-track" id="reelTrack">
-            <article class="reel-slide" data-theme="rose" aria-label="Reel 1 of 4">
-              <img src="./images/LBSNAA.jpeg" alt="Girl smiling in flowers" />
+            <article class="reel-slide" data-theme="rose" aria-label="Reel 1 of 12">
+              <img src="./images/isha_red.jpg" alt="Girl smiling in flowers" />
               <div class="overlay">You're the Hermione of this story — smart, kind, iconic 📚</div>
             </article>
-            <article class="reel-slide" data-theme="gold" aria-label="Reel 2 of 4">
-              <img src="./images/lbsnaa_1.jpeg" alt="Girl with camera outdoors" />
-              <div class="overlay">Your vibe is brighter than a Patronus ✨</div>
+            <article class="reel-slide" data-theme="gold" aria-label="Reel 2 of 12">
+              <img src="./images/isha_papa.jpg" alt="Girl with camera outdoors" />
+              <div class="overlay">Dad’s little princess, forever his biggest pride 👨‍👧💫</div>
             </article>
-            <article class="reel-slide" data-theme="violet" aria-label="Reel 3 of 4">
-              <img src="./images/lbsnaa_2.jpg" alt="Happy girl enjoying celebration" />
+            <article class="reel-slide" data-theme="violet" aria-label="Reel 3 of 12">
+              <img src="./images/isha_mummy.heic" alt="Happy girl enjoying celebration" />
+              <div class="overlay">In his arms, every worry turns into strength 🫶🌸</div>
+            </article>
+            <article class="reel-slide" data-theme="mint" aria-label="Reel 4 of 12">
+              <img src="./images/isha_family.jpg" alt="Girl smiling at celebration" />
+              <div class="overlay">Bhai Behen ke saath full masti, full bakbak, full pyaar always 👭✨</div>
+            </article>
+
+	    <article class="reel-slide" data-theme="rose" aria-label="Reel 5 of 12">
+              <img src="./images/isha_kkt.heic" alt="Girl smiling in flowers" />
+              <div class="overlay">Here goes the start of a new journey 📸📚</div>
+            </article>
+            <article class="reel-slide" data-theme="gold" aria-label="Reel 6 of 12">
+              <img src="./images/isha_howrah.jpg" alt="Girl with camera outdoors" />
+              <div class="overlay">The adventure starts from here 🛥️🦘🌉 </div>
+            </article>
+            <article class="reel-slide" data-theme="violet" aria-label="Reel 7 of 12">
+              <img src="./images/isha_winner.heic" alt="Happy girl enjoying celebration" />
+              <div class="overlay">Champion Girl 🥇🤞</div>
+            </article>
+            <article class="reel-slide" data-theme="mint" aria-label="Reel 8 of 12">
+              <img src="./images/isha_gang2.jpg" alt="Girl smiling at celebration" />
+              <div class="overlay">Dosti ho toh aisi—thodi pagalpanti, zyada loyalty, forever wali 🤝💙</div>
+            </article>
+	    
+	    <article class="reel-slide" data-theme="rose" aria-label="Reel 9 of 12">
+              <img src="./images/isha_itc.heic" alt="Girl smiling in flowers" />
+              <div class="overlay">Modeling internship day 💃💄</div>
+            </article>
+            <article class="reel-slide" data-theme="gold" aria-label="Reel 10 of 12">
+              <img src="./images/isha_red_white.jpg" alt="Girl with camera outdoors" />
+              <div class="overlay">Dil thi kind, mind thi strong, and style ma full killer che 😍⚡</div>
+            </article>
+            <article class="reel-slide" data-theme="violet" aria-label="Reel 11 of 12">
+              <img src="./images/isha_mybdy.jpg" alt="Happy girl enjoying celebration" />
               <div class="overlay">Keep chasing dreams like a Firebolt rider 🚀</div>
             </article>
-            <article class="reel-slide" data-theme="mint" aria-label="Reel 4 of 4">
-              <img src="./images/lbsnaa_3.jpeg" alt="Girl smiling at celebration" />
+            <article class="reel-slide" data-theme="mint" aria-label="Reel 12 of 12">
+              <img src="./images/isha_bdy.jpg" alt="Girl smiling at celebration" />
               <div class="overlay">Have the most magical year ever, birthday queen 👑</div>
             </article>
           </div>
@@ -74,6 +107,12 @@
     <aside id="magicPopup" class="magic-popup" aria-live="polite" aria-hidden="true">
       <p id="magicPopupText"></p>
       <button id="closePopup" class="close-popup" aria-label="Close easter egg popup">✖</button>
+    </aside>
+
+    <aside id="photoPopup" class="photo-popup" aria-hidden="true">
+      <img id="photoPopupImage" alt="Birthday memory card" />
+      <p id="photoPopupText"></p>
+      <button id="closePhotoPopup" class="close-popup" aria-label="Close photo popup">✖</button>
     </aside>
 
     <script src="script.js"></script>
