@@ -16,6 +16,7 @@ body {
   background: radial-gradient(circle at top right, #ffd9f0, #d8cbff 45%, #baa2ff 80%, #31254d);
   padding: 0.85rem 0.75rem 1.5rem;
   position: relative;
+  overscroll-behavior-y: none;
 }
 
 body.modal-open .container,
@@ -153,6 +154,7 @@ h1 { font-size: clamp(1.7rem, 7vw, 3rem); }
   touch-action: pan-y;
   box-shadow: 0 8px 28px rgba(22, 8, 41, 0.34);
   transition: background 0.45s ease;
+  overscroll-behavior-y: contain;
 }
 
 .reel-viewport[data-theme="rose"] { background: radial-gradient(circle at 20% 20%, #ff8fc7, #2f123f 70%); }
@@ -274,4 +276,5 @@ h1 { font-size: clamp(1.7rem, 7vw, 3rem); }
   .reels-tip { font-size: 0.9rem; }
   .reel-viewport { height: min(68vh, 600px); }
 }
+
 
