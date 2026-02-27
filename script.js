@@ -51,7 +51,7 @@ const memoryPhotos = [
     text: 'Beautiful, brave, and brilliant. 🤓🎈'
   },
   {
-    src: './images/pop_isha_pop.jpg',
+    src: './images/pop_isha_pop2.jpg',
     text: 'Ooops to close, go away ❌🔍.'
   },
   {
