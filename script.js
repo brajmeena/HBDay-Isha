@@ -52,7 +52,7 @@ const memoryPhotos = [
   },
   {
     src: './images/pop_isha_pop2.jpg',
-    text: 'Ooops to close, go away ❌🔍.'
+    text: 'Ooops, wrong door, go back 🛺🔍.'
   },
   {
     src: './images/pop_isha_stop.jpg',
